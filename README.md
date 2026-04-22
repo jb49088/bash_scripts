@@ -1,6 +1,6 @@
 ### bash_scripts
 
-A collection of useful bash scriptss
+A collection of useful bash scripts
 
 <!-- CODE_STATISTICS_START -->
 
