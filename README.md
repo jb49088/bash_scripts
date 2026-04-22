@@ -1,6 +1,6 @@
 ### bash_scripts
 
-A collection of useful bash scripts
+Bash based personal productivity tools and workflow automation
 
 <!-- CODE_STATISTICS_START -->
 
