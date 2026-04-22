@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+NAME=$(basename "$0")
+
+SOURCES=()
+TARGETS=()
+
+declare -A SOURCES_MAPPING=(
+    [zshrc]="/home/$USER/.zshrc"
+    [zshenv]="/home/$USER/.zshenv"
+    [zshenvlocal]="/home/$USER/.zshenv.local"
+    [nvim]="/home/$USER/.config/nvim"
+    [yazi]="/home/$USER/.config/yazi"
+)
+
+declare -A TARGETS_MAPPING=(
+    [pi]="$USER@10.0.0.181"
+    [kali]="$USER@10.0.0.217"
+)
+
+usage() {
+    echo "Usage: $NAME [zsh|zshenv|zshenvlocal|nvim|yazi] [pi|kali] [-h|--help]"
+}
+
+parse_args() {
+    while [[ -n "$1" ]]; do
+        case "$1" in
+            zsh | zshenv | zshenvlocal | nvim | yazi)
+                SOURCES+=("$1")
+                ;;
+            pi | kali)
+                TARGETS+=("$1")
+                ;;
+            -h | --help)
+                usage
+                exit
+                ;;
+            *)
+                usage >&2
+                exit 1
+                ;;
+        esac
+        shift
+    done
+}
+
+copy_files() {
+    local source target
+    for source in "${SOURCES[@]}"; do
+        for target in "${TARGETS[@]}"; do
+            rsync --verbose --copy-links \
+                "${SOURCES_MAPPING[$source]}" \
+                "${TARGETS_MAPPING[$target]}:${SOURCES_MAPPING[$source]}"
+        done
+    done
+}
+
+main() {
+    parse_args "$@"
+    copy_files
+}
+
+main "$@"
