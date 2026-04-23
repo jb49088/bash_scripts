@@ -23,13 +23,13 @@ declare -A TARGETS_MAPPING=(
 )
 
 usage() {
-    echo "Usage: $NAME [zsh|zshenv|zshenvlocal|nvim|yazi] [pi|kali] [-h|--help]"
+    echo "Usage: $NAME [zshrc|zshenv|zshenvlocal|nvim|yazi] [pi|kali] [-h|--help]"
 }
 
 parse_args() {
     while [[ -n "$1" ]]; do
         case "$1" in
-            zsh | zshenv | zshenvlocal | nvim | yazi)
+            zshrc | zshenv | zshenvlocal | nvim | yazi)
                 SOURCES+=("$1")
                 ;;
             pi | kali)
