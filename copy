@@ -10,11 +10,11 @@ SOURCES=()
 TARGETS=()
 
 declare -A SOURCES_MAPPING=(
-    [zshrc]="/home/$USER/.zshrc"
-    [zshenv]="/home/$USER/.zshenv"
-    [zshenvlocal]="/home/$USER/.zshenv.local"
-    [nvim]="/home/$USER/.config/nvim"
-    [yazi]="/home/$USER/.config/yazi"
+    [zshrc]="$HOME/.zshrc"
+    [zshenv]="$HOME/.zshenv"
+    [zshenvlocal]="$HOME/.zshenv.local"
+    [nvim]="$HOME/.config/nvim"
+    [yazi]="$HOME/.config/yazi"
 )
 
 declare -A TARGETS_MAPPING=(
