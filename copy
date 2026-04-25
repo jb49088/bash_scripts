@@ -11,7 +11,7 @@ TARGETS=()
 
 declare -A SOURCES_MAPPING=(
     [zshrc]="$HOME/.zshrc"
-    [zshrclocal]="$HOME/.zshenv.local"
+    [zshrclocal]="$HOME/.zshrc.local"
     [zshenv]="$HOME/.zshenv"
     [zshenvlocal]="$HOME/.zshenv.local"
     [nvim]="$HOME/.config/nvim"
