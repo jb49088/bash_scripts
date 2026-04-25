@@ -30,7 +30,7 @@ usage() {
 parse_args() {
     while [[ -n "$1" ]]; do
         case "$1" in
-            zshrc | zshenv | zshenvlocal | nvim | yazi)
+            zshrc | zshrclocal | zshenv | zshenvlocal | nvim | yazi)
                 SOURCES+=("$1")
                 ;;
             pi | kali)
