@@ -30,7 +30,8 @@ run_yt-dlp() {
         --sleep-interval 2 --max-sleep-interval 5 \
         --download-archive "${OUTPUT}/archive.txt" \
         --output "${OUTPUT}/%(artist)s - %(title)s.%(ext)s" \
-        "$YOUTUBE_MUSIC_PLAYLIST"
+        "$YOUTUBE_MUSIC_PLAYLIST" \
+        || true
 }
 
 copy_to_pi() {
