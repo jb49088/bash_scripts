@@ -11,7 +11,6 @@ TARGETS=()
 
 declare -A SOURCES_MAPPING=(
     [zshrc]="$HOME/.zshrc"
-    [zshrclocal]="$HOME/.zshrc.local"
     [zshenv]="$HOME/.zshenv"
     [zshenvlocal]="$HOME/.zshenv.local"
     [nvim]="$HOME/.config/nvim"
@@ -24,13 +23,13 @@ declare -A TARGETS_MAPPING=(
 )
 
 usage() {
-    echo "Usage: $NAME [zshrc|zshrclocal|zshenv|zshenvlocal|nvim|yazi] [pi|kali] [-h|--help]"
+    echo "Usage: $NAME [zshrc|zshenv|zshenvlocal|nvim|yazi] [pi|kali] [-h|--help]"
 }
 
 parse_args() {
     while [[ -n "$1" ]]; do
         case "$1" in
-            zshrc | zshrclocal | zshenv | zshenvlocal | nvim | yazi)
+            zshrc | zshenv | zshenvlocal | nvim | yazi)
                 SOURCES+=("$1")
                 ;;
             pi | kali)
