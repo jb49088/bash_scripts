@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# ================================================================================
+# =                                   GETMUSIC                                   =
+# ================================================================================
+
+# Downloads YouTube Music playlist using yt-dlp
+# Skips existing files in output directory
+# Copies playlist to pi using rsync
+# Circumvents headless pi cookie issue
+
+set -eou pipefail
+
+OUTPUT="$HOME/music"
+
+check_for_yt-dlp() {
+    if ! command -v yt-dlp &>/dev/null; then
+        echo "yt-dlp not found" >&2
+        exit 1
+    fi
+}
+
+run_yt-dlp() {
+    mkdir --parents "$OUTPUT"
+
+    yt-dlp --cookies-from-browser firefox \
+        --extract-audio \
+        --audio-format mp3 \
+        --no-overwrites \
+        --sleep-interval 2 --max-sleep-interval 5 \
+        --download-archive "${OUTPUT}/archive.txt" \
+        --output "${OUTPUT}/%(artist)s - %(title)s.%(ext)s" \
+        "$YOUTUBE_MUSIC_PLAYLIST"
+}
+
+copy_to_pi() {
+    rsync --archive --verbose --progress "${OUTPUT}/" "$USER@10.0.0.181:/srv/navidrome/music"
+}
+
+main() {
+    check_for_yt-dlp
+    run_yt-dlp
+    copy_to_pi
+}
+
+main
