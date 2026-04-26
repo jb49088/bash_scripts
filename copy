@@ -17,11 +17,6 @@ declare -A SOURCES_MAPPING=(
     [yazi]="$HOME/.config/yazi"
 )
 
-declare -A TARGETS_MAPPING=(
-    [pi]="$USER@10.0.0.181"
-    [kali]="$USER@10.0.0.217"
-)
-
 usage() {
     echo "Usage: $NAME [zshrc|zshenv|zshenvlocal|nvim|yazi] [pi|kali] [-h|--help]"
 }
@@ -54,7 +49,7 @@ copy_files() {
         for target in "${TARGETS[@]}"; do
             rsync --verbose --recursive --copy-links \
                 "${SOURCES_MAPPING[$source]}" \
-                "${TARGETS_MAPPING[$target]}:${SOURCES_MAPPING[$source]}"
+                "${target}:${SOURCES_MAPPING[$source]}"
         done
     done
 }
