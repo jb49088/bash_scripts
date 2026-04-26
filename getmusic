@@ -34,7 +34,7 @@ run_yt-dlp() {
 }
 
 copy_to_pi() {
-    rsync --archive --verbose --progress "${OUTPUT}/" "$USER@10.0.0.181:/srv/navidrome/music"
+    rsync --archive --verbose --progress "${OUTPUT}/" "pi:/srv/navidrome/music"
 }
 
 main() {
